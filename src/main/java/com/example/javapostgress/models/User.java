@@ -24,8 +24,8 @@ public class User implements Serializable {
   private Long id;
 
   @NotBlank
-  @Column(name = "name")
-  private String name;
+  @Column(name = "username")
+  private String username;
 
   @Column(name = "email")
   private String email;
@@ -48,12 +48,12 @@ public class User implements Serializable {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getEmail() {
