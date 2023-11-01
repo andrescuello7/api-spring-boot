@@ -68,7 +68,7 @@ public class UserController {
     try {
       User currentUser = userService.findById(id);
 
-      currentUser.setName(user.getName());
+      currentUser.setUsername(user.getUsername());
       currentUser.setPhone(user.getPhone());
       currentUser.setEmail(user.getEmail());
       currentUser.setPassword(user.getPassword());
