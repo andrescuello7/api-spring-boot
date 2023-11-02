@@ -1,10 +1,10 @@
 package com.example.javapostgress.services;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.example.javapostgress.models.Post;
 
 public interface PostServices {
-  public List<Post> findAll();
+  public ArrayList<Post> findAll();
   public Post save(Post post);
 }
