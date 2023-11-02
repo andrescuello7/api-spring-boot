@@ -1,5 +1,6 @@
 package com.example.javapostgress.controllers;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.javapostgress.models.User;
 import com.example.javapostgress.services.UserServiceImplement;
@@ -41,8 +43,9 @@ public class UserController {
   @GetMapping(value = "/users/{id}")
   public ResponseEntity<Object> getById(@PathVariable Long id) {
     try {
-      User user = userService.findById(id);
-      return new ResponseEntity<Object>(user, HttpStatus.OK);
+      User user = userService.findById(id);      
+      URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+      return ResponseEntity.created(uri).body(user);
     } catch (Exception e) {
       Map<String, Object> map = new HashMap<String, Object>();
       map.put("message", e.getMessage());
@@ -68,7 +71,7 @@ public class UserController {
     try {
       User currentUser = userService.findById(id);
 
-      currentUser.setName(user.getName());
+      currentUser.setUsername(user.getUsername());
       currentUser.setPhone(user.getPhone());
       currentUser.setEmail(user.getEmail());
       currentUser.setPassword(user.getPassword());

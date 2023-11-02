@@ -10,6 +10,5 @@ import com.example.javapostgress.models.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Long> {
   List<User> findAll();
-  User save(User user);
   void delete(User user);
 }
